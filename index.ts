@@ -11,6 +11,8 @@ export type AccessByPath<T extends PlainAnyObj, P extends string[]> = P extends 
     : never
   : T
 export type AccessByCommaPath<T extends PlainAnyObj, P extends string> = AccessByPath<T, SplitComma<P>>
+
+// Is
 export type IsAsyncFunc<F extends AnyFunc> = F extends (...args: unknown[]) => Promise<unknown> ? true : false
 
 // Obj
@@ -27,6 +29,11 @@ export type ExtractVals<T extends PlainAnyObj, U> = {
 // Func
 export type AnyFunc = (...args: any[]) => any
 export type OrAsyncFunc<F extends AnyFunc> = (...args: Parameters<F>) => OrPromise<ReturnType<F>>
+export type ReturnTypeOnPromise<T extends AnyFunc> = T extends (...args: unknown[]) => Promise<infer R>
+  ? R
+  : T extends (...args: unknown[]) => infer R
+  ? R
+  : never
 
 // Class
 export type ClassProps<C> = { [P in keyof C]: C[P] extends Function ? never : C[P] }
