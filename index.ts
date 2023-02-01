@@ -11,7 +11,7 @@ export type AccessByPath<T extends PlainAnyObj, P extends string[]> = P extends 
     : never
   : T
 export type AccessByCommaPath<T extends PlainAnyObj, P extends string> = AccessByPath<T, SplitComma<P>>
-export type IsAsyncFunction<F extends AnyFunc> = F extends (...args: unknown[]) => Promise<unknown> ? true : false
+export type IsAsyncFunc<F extends AnyFunc> = F extends (...args: unknown[]) => Promise<unknown> ? true : false
 
 // Obj
 export type EmptyObj = { [key: string]: never }
