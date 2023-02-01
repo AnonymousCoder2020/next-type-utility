@@ -41,3 +41,8 @@ export type ClassPropsPartial<C> = Partial<ClassProps<C>>
 
 // RegExp
 export type MatchResult = RegExpMatchArray | null
+
+// JSON
+type PlainObjOrArr<T> = { [key: string | number]: T }
+export type JSONPrimitive = string | number | undefined | null | boolean
+export type JSONObject<T = any> = T extends PlainObjOrArr<any> ? { [P in keyof T]: JSONObject<T[P]> } : JSONPrimitive
