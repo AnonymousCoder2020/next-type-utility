@@ -25,6 +25,7 @@ export type PlainAnyObj = PlainObj<any>
 export type ExtractVals<T extends PlainAnyObj, U> = {
   [P in keyof T]: Extract<T[P], U>
 }
+export type StrKeyOf<T extends PlainAnyObj> = Extract<keyof T, string>
 
 // Func
 export type AnyFunc = (...args: any[]) => any
