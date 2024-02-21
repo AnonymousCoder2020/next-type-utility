@@ -2,7 +2,7 @@
 export type OrArr<T> = T | T[]
 export type OrPromise<T> = T | Promise<T>
 export type SplitStr<T extends string, S extends string> = T extends `${infer A}${S}${infer B}` ? [A, ...SplitStr<B, S>] : [T]
-export type SplitComma<T extends string> = SplitStr<T, '.'>
+export type SplitPeriod<T extends string> = SplitStr<T, '.'>
 export type AccessByPath<T extends PlainAnyObj, P extends string[]> = P extends [infer A, ...infer B]
   ? A extends keyof T
     ? B extends string[]
@@ -10,7 +10,7 @@ export type AccessByPath<T extends PlainAnyObj, P extends string[]> = P extends 
       : T[A]
     : never
   : T
-export type AccessByCommaPath<T extends PlainAnyObj, P extends string> = AccessByPath<T, SplitComma<P>>
+export type AccessByPeriodPath<T extends PlainAnyObj, P extends string> = AccessByPath<T, SplitPeriod<P>>
 export type ArrEl<A extends readonly any[]> = A[number]
 
 // Is
