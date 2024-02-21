@@ -11,6 +11,7 @@ export type AccessByPath<T extends PlainAnyObj, P extends string[]> = P extends 
     : never
   : T
 export type AccessByCommaPath<T extends PlainAnyObj, P extends string> = AccessByPath<T, SplitComma<P>>
+export type ArrEl<A extends readonly any[]> = A[number]
 
 // Is
 export type IsAsyncFunc<F extends AnyFunc> = F extends (...args: unknown[]) => Promise<unknown> ? true : false
@@ -26,6 +27,8 @@ export type ExtractVals<T extends PlainAnyObj, U> = {
   [P in keyof T]: Extract<T[P], U>
 }
 export type StrKeyOf<T extends PlainAnyObj> = Extract<keyof T, string>
+export type PartialPart<T extends object, K extends keyof T> = Partial<Pick<T, K>> & Omit<T, K>
+export type PartialOthers<T extends object, K extends keyof T> = Partial<Omit<T, K>> & Pick<T, K>
 
 // Func
 export type AnyFunc = (...args: any[]) => any
